@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UDG - Mi Perfil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans text-gray-900 pb-24">
+
+    <header class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex items-center">
+            <button class="text-gray-600 mr-4" onclick="window.history.back()">
+                <i class="fa-solid fa-arrow-left text-xl"></i>
+            </button>
+            <h1 class="text-xl font-bold">Mi Perfil</h1>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-6">
+        
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center space-x-4 mb-8">
+            <div class="relative">
+                <img src="https://i.pravatar.cc/150?u=udg-user" alt="Avatar" class="w-20 h-20 rounded-full border-4 border-indigo-50">
+                <button class="absolute bottom-0 right-0 bg-indigo-600 text-white p-1.5 rounded-full border-2 border-white shadow-lg">
+                    <i class="fa-solid fa-camera text-[10px]"></i>
+                </button>
+            </div>
+            <div>
+                <h2 class="text-lg font-bold">Alex Rivera</h2>
+                <p class="text-gray-500 text-sm">alex.rivera@ejemplo.com</p>
+                <span class="inline-block mt-2 bg-indigo-100 text-indigo-700 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Miembro Gold</span>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <button class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm text-center active:scale-95 transition-transform">
+                <i class="fa-solid fa-location-dot text-indigo-500 text-xl mb-1"></i>
+                <p class="text-xs font-semibold">Mis Direcciones</p>
+            </button>
+            <button class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm text-center active:scale-95 transition-transform">
+                <i class="fa-solid fa-credit-card text-indigo-500 text-xl mb-1"></i>
+                <p class="text-xs font-semibold">Métodos de Pago</p>
+            </button>
+        </div>
+
+        <section>
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold italic">Mis Pedidos</h3>
+                <button class="text-indigo-600 text-sm font-medium">Ver todos</button>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mb-4">
+                <div class="p-4 flex justify-between items-start border-b border-dashed">
+                    <div>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase">ID del Pedido: #UDG-7729</p>
+                        <p class="text-sm font-bold">Entrega estimada: 18 Mar</p>
+                    </div>
+                    <span class="bg-blue-100 text-blue-700 text-[10px] px-2 py-1 rounded-md font-bold uppercase">En camino 🚚</span>
+                </div>
+                <div class="p-4 flex items-center space-x-3">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=80" class="w-12 h-12 rounded-lg bg-gray-100 object-cover">
+                    <div class="flex-1">
+                        <p class="text-sm font-medium line-clamp-1">Smart Watch V3 + Correa Silicona</p>
+                        <p class="text-xs text-gray-400">Total: $1,299.00</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-gray-50 flex space-x-2">
+                    <button class="flex-1 bg-indigo-600 text-white py-2.5 rounded-xl text-xs font-bold hover:bg-indigo-700 transition-colors shadow-md">
+                        <i class="fa-solid fa-map-location-dot mr-2"></i>Rastrear envío
+                    </button>
+                    <button class="px-4 border border-gray-200 text-gray-600 rounded-xl hover:bg-gray-100 transition-colors">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mb-4">
+                <div class="p-4 flex justify-between items-start border-b border-dashed">
+                    <div>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase">ID del Pedido: #UDG-6540</p>
+                        <p class="text-sm font-bold">Entregado el 10 Mar</p>
+                    </div>
+                    <span class="bg-green-100 text-green-700 text-[10px] px-2 py-1 rounded-md font-bold uppercase">Entregado ✅</span>
+                </div>
+                <div class="p-4 flex items-center space-x-3">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=80" class="w-12 h-12 rounded-lg bg-gray-100 object-cover">
+                    <div class="flex-1">
+                        <p class="text-sm font-medium line-clamp-1">Auriculares Noise Cancelling</p>
+                        <p class="text-xs text-gray-400">Total: $850.00</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-gray-50 flex space-x-2">
+                    <button class="flex-1 border border-indigo-600 text-indigo-600 py-2.5 rounded-xl text-xs font-bold hover:bg-indigo-50 transition-colors">
+                        <i class="fa-solid fa-rotate-left mr-2"></i>Comprar de nuevo
+                    </button>
+                    <button class="px-4 border border-gray-200 text-gray-600 rounded-xl hover:bg-gray-100 transition-colors">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <button class="w-full mt-6 flex items-center justify-center space-x-2 text-red-500 py-4 font-bold border-2 border-red-50 border-dashed rounded-2xl active:bg-red-50">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Cerrar sesión en este dispositivo</span>
+        </button>
+
+    </main>
+
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-3">
+        <button class="text-gray-400 flex flex-col items-center"><i class="fa-solid fa-house"></i><span class="text-[10px]">Inicio</span></button>
+        <button class="text-gray-400 flex flex-col items-center"><i class="fa-solid fa-magnifying-glass"></i><span class="text-[10px]">Buscar</span></button>
+        <button class="text-gray-400 flex flex-col items-center"><i class="fa-solid fa-bag-shopping"></i><span class="text-[10px]">Carrito</span></button>
+        <button class="text-indigo-600 flex flex-col items-center"><i class="fa-solid fa-user"></i><span class="text-[10px]">Perfil</span></button>
+    </nav>
+
+</body>
+</html>
