@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UDG - Finalizar Compra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @keyframes slideDown {
+            0% { transform: translateY(-100%); opacity: 0; }
+            10% { transform: translateY(20px); opacity: 1; }
+            90% { transform: translateY(20px); opacity: 1; }
+            100% { transform: translateY(-100%); opacity: 0; }
+        }
+        .toast-animation { animation: slideDown 3s ease-in-out forwards; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900 pb-10">
+
+    <div id="success-toast" class="hidden fixed top-0 left-0 right-0 z-[100] px-4 flex justify-center">
+        <div class="bg-green-600 text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center space-x-3">
+            <i class="fa-solid fa-circle-check text-xl"></i>
+            <span class="font-bold">¡Compra confirmada con éxito!</span>
+        </div>
+    </div>
+
+    <header class="bg-white border-b p-4 mb-6">
+        <div class="max-w-2xl mx-auto flex items-center">
+            <button onclick="window.history.back()" class="text-gray-400 mr-4"><i class="fa-solid fa-chevron-left"></i></button>
+            <h1 class="text-xl font-bold flex-1 text-center">Finalizar Pedido</h1>
+            <span class="text-indigo-600 font-bold italic">UDG</span>
+        </div>
+    </header>
+
+    <main class="max-w-2xl mx-auto px-4">
+        
+        <div class="bg-indigo-900 text-white p-6 rounded-3xl mb-8 shadow-xl relative overflow-hidden">
+            <div class="relative z-10">
+                <p class="text-indigo-200 text-sm">Total a pagar</p>
+                <h2 class="text-3xl font-black">$2,149.00</h2>
+            </div>
+            <i class="fa-solid fa-bag-shopping absolute -right-4 -bottom-4 text-8xl text-indigo-800 opacity-50"></i>
+        </div>
+
+        <form id="checkout-form" onsubmit="handlePayment(event)" class="space-y-6">
+            
+            <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <h3 class="text-lg font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-file-invoice text-indigo-500 mr-2"></i> Datos de Facturación
+                </h3>
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label class="text-xs font-bold text-gray-400 uppercase">Nombre Completo</label>
+                        <input type="text" required class="w-full mt-1 bg-gray-50 border-none rounded-xl p-3 focus:ring-2 focus:ring-indigo-500" placeholder="Ej. Alex Rivera">
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-gray-400 uppercase">Dirección de Envío</label>
+                        <input type="text" required class="w-full mt-1 bg-gray-50 border-none rounded-xl p-3 focus:ring-2 focus:ring-indigo-500" placeholder="Calle, número y colonia">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 uppercase">Ciudad</label>
+                            <input type="text" required class="w-full mt-1 bg-gray-50 border-none rounded-xl p-3 focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 uppercase">C.P.</label>
+                            <input type="number" required class="w-full mt-1 bg-gray-50 border-none rounded-xl p-3 focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <h3 class="text-lg font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-credit-card text-indigo-500 mr-2"></i> Método de Pago
+                </h3>
+                
+                <select id="payment-method" onchange="updatePaymentFields()" class="w-full bg-gray-50 border-none rounded-xl p-4 focus:ring-2 focus:ring-indigo-500 font-medium">
+                    <option value="card">Tarjeta de Crédito / Débito</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="transfer">Transferencia SPEI</option>
+                </select>
+
+                <div id="fields-card" class="mt-6 space-y-4">
+                    <div>
+                        <label class="text-xs font-bold text-gray-400 uppercase">Número de Tarjeta</label>
+                        <div class="relative">
+                            <input type="text" class="w-full mt-1 bg-gray-50 border-none rounded-xl p-3 pr-10 focus:ring-2 focus:ring-indigo-500" placeholder="0000 0000 0000 0000">
+                            <i class="fa-brands fa-cc-visa absolute right-3 top-4 text-gray-400 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" class="bg-gray-50 border-none rounded-xl p-3 focus:ring-2 focus:ring-indigo-500" placeholder="MM/AA">
+                        <input type="password" class="bg-gray-50 border-none rounded-xl p-3 focus:ring-2 focus:ring-indigo-500" placeholder="CVV">
+                    </div>
+                </div>
+
+                <div id="fields-paypal" class="hidden mt-6 p-4 bg-blue-50 rounded-xl text-center">
+                    <i class="fa-brands fa-paypal text-3xl text-blue-600 mb-2"></i>
+                    <p class="text-sm text-blue-800">Serás redirigido a PayPal de forma segura para autorizar tu pago.</p>
+                </div>
+
+                <div id="fields-transfer" class="hidden mt-6 p-4 border-2 border-dashed border-gray-200 rounded-xl">
+                    <p class="text-xs font-bold text-gray-400 mb-2 uppercase">Datos para depósito:</p>
+                    <p class="text-sm"><strong>Banco:</strong> UDG Bank</p>
+                    <p class="text-sm"><strong>CLABE:</strong> 0123 4567 8901 2345 67</p>
+                    <p class="text-xs text-indigo-600 mt-2 italic font-medium">Tu pedido se procesará al confirmar el pago.</p>
+                </div>
+            </section>
+
+            <button type="submit" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-indigo-200 hover:bg-indigo-700 active:scale-[0.98] transition-all">
+                Confirmar y Pagar <i class="fa-solid fa-lock ml-2 text-sm opacity-50"></i>
+            </button>
+        </form>
+    </main>
+
+    <script>
+        function updatePaymentFields() {
+            const method = document.getElementById('payment-method').value;
+            const cardFields = document.getElementById('fields-card');
+            const paypalFields = document.getElementById('fields-paypal');
+            const transferFields = document.getElementById('fields-transfer');
+
+            // Ocultar todos
+            cardFields.classList.add('hidden');
+            paypalFields.classList.add('hidden');
+            transferFields.classList.add('hidden');
+
+            // Mostrar el seleccionado
+            if (method === 'card') cardFields.classList.remove('hidden');
+            if (method === 'paypal') paypalFields.classList.remove('hidden');
+            if (method === 'transfer') transferFields.classList.remove('hidden');
+        }
+
+        function handlePayment(e) {
+            e.preventDefault();
+            
+            const toast = document.getElementById('success-toast');
+            toast.classList.remove('hidden');
+            toast.classList.add('toast-animation');
+
+            // Deshabilitar botón para evitar doble click
+            const btn = e.target.querySelector('button');
+            btn.disabled = true;
+            btn.innerText = "Procesando...";
+
+            // Limpiar animación y recargar/redirigir tras 3 segundos
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('toast-animation');
+                alert("¡Gracias por tu compra! Redirigiendo a tus pedidos...");
+                window.location.reload(); 
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
